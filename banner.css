@@ -1,0 +1,15 @@
+.banner {
+    background: url('https://via.placeholder.com/1920x800') center/cover no-repeat;
+    height: 500px;
+    position: relative;
+  }
+  
+  .overlay {
+    height: 100%;
+    background: #078dfa80;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  

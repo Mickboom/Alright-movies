@@ -1,0 +1,358 @@
+
+body.light-mode {
+  background-color: #ffffff;
+  color: #000000;
+}
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+.navbar-dark {
+  background-color: #000000;
+}
+.navbar-light {
+  background-color: #f8f9fa;
+}
+
+  form {
+    margin: 20px 0;
+  }
+  input {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid  #9e0505;
+  }
+  button {
+    padding: 10px 20px;
+    border: none;
+    background:  #ffffff;
+    color: #9e0505;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  #movies {
+    margin-top: 20px;
+  }
+
+  body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, #e3f2fd, #ffffff);
+    margin: 0;
+    padding: 0;
+  }
+  
+  h1 {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  form {
+    border-radius: 10px;
+  }
+  
+  #movies ul {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: linear-gradient(to bottom, #e3f2fd, #ffffff);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .list-group-item:hover {
+    background: linear-gradient(to bottom, #e3f2fd, #ffffff);
+    transform: scale(1.02);
+    transition: 0.3s ease-in-out;
+  }
+  
+  button {
+    background: #9e0505;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease;
+    transform-style: we;
+  }
+  
+  button:hover {
+    background:  linear-gradient(to bottom, #fde3e3, #ffffff);
+  }
+
+  /* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: linear-gradient(to bottom, #e3f2fd, #ffffff);
+    color:  #9e0505;
+  }
+  
+  .navbar {
+    padding: 1rem;
+    background-color:  linear-gradient(to bottom, #e3f2fd, #ffffff);
+  }
+  
+  .banner {
+    background: url('https://via.placeholder.com/1920x800') center/cover no-repeat;
+    height: 500px;
+    position: relative;
+  }
+  
+  .banner .overlay {
+    height: 100%;
+    background:  linear-gradient(to bottom, #e3f2fd, #ffffff);
+    padding: 0 20px;
+  }
+  
+  .carousel-caption h5 {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  .carousel-caption p {
+    font-size: 1.2rem;
+  }
+  
+  .card {
+    background-color: linear-gradient(to bottom, #e3f2fd, #ffffff);
+    border: none;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card img {
+    border-radius: 10px;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow:  #fd0202;
+  }
+  
+  .card-title {
+    font-size: 1.1rem;
+    color:  #9e0505;
+    font-weight: bold;
+  }
+  
+  .btn {
+    border-radius: 20px;
+    background-color: #9e0505;
+    border-color: #fd0202;
+  }
+  
+  .h2 {
+    text-align: left;
+    font-weight: bold;
+    color: #9e0505;
+    margin-bottom: 20px;
+  }
+
+  .login {
+    color: #9e0505;
+
+  }
+
+  .display {
+    color: #9e0505;
+
+  }
+
+  .lead{
+    color: #9e0505;
+  }  
+
+  .nav-link:hover {
+    color: #ff5555;
+    text-decoration: underline;
+  }
+  .nav-link.active {
+    font-weight: bold;
+    border-bottom: 2px solid #ff5555;
+  }
+
+  .search-section {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .search-section h2 {
+    font-weight: bold;
+  }
+  .search-section .form-control,
+  .search-section .form-select {
+    border-radius: 5px;
+  }
+  
+
+  #movie-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  .card {
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+  }
+  .card:hover {
+    transform: scale(1.05);
+  }
+
+  .trending-section {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 30px;
+  }
+  .swiper-slide {
+    text-align: center;
+  }
+
+  .movie-details img {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .movie-details h2 {
+    font-weight: bold;
+  }
+  .movie-details button {
+    margin-right: 10px;
+  }
+  
+  #movie-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+  }
+  .card img {
+    border-radius: 10px;
+  }
+  .card {
+    transition: transform 0.3s ease-in-out;
+  }
+  .card:hover {
+    transform: scale(1.05);
+  }
+
+  .movie-card {
+    text-align: center;
+  }
+  #authModal .modal-content {
+    border-radius: 10px;
+    padding: 20px;
+  }
+  
+  .search-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+    max-width: 600px;
+  }
+  .search-container form {
+    width: 100%;
+  }
+  .search-container .form-control {
+    border-radius: 50px;
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+  }
+  .search-container .btn {
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+  }
+  .search-container .btn i {
+    margin-left: 5px;
+  }
+  .search-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  
+  #search-icon {
+    border: none;
+    background-color: transparent;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  #search-icon i {
+    color: #333;
+    transition: color 0.3s ease;
+  }
+  
+  #search-icon:hover i {
+    color: #ff3333;
+  }
+  
+  #search-bar {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: none; /* Hidden by default */
+    width: 300px;
+  }
+  
+  #search-bar .form-control {
+    width: 100%;
+    border-radius: 30px;
+  }
+  
+  #search-bar .btn {
+    margin-left: 10px;
+    border-radius: 30px;
+  }
+  
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  #search-bar {
+    animation: slideDown 0.3s ease-in-out;
+  }
+  
+  
+  
+  
+  
+  /* CSS ya kawaida */
+body { font-family: 'Poppins', sans-serif; }
+/* CSS iliyopunguzwa */
+body{font-family:'Poppins',sans-serif;}
+
+@media (max-width: 768px) {
+  .navbar-brand { font-size: 1.5rem; }
+  .featured img { height: auto; width: 100%; }
+}
+
+
+  
+

@@ -1,0 +1,167 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #007BFF;
+  }
+  .container {
+    margin: 50px auto;
+    width: 50%;
+    padding: 50px;
+    background: linear-gradient(to bottom, #e3f2fd, #ffffff);
+    box-shadow: #007BFF ;
+    color: #007BFF;
+    background-color: #007BFF;
+  }
+
+  form {
+    margin: 20px 0;
+  }
+  input {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid  #007BFF;
+  }
+  button {
+    padding: 10px 20px;
+    border: none;
+    background: #007BFF;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  #movies {
+    margin-top: 20px;
+  }
+
+  body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, #e3f2fd, #ffffff);
+    margin: 0;
+    padding: 0;
+  }
+  
+  h1 {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  form {
+    border-radius: 10px;
+  }
+  
+  #movies ul {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: linear-gradient(to bottom, #e3f2fd, #ffffff);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .list-group-item:hover {
+    background: linear-gradient(to bottom, #e3f2fd, #ffffff);
+    transform: scale(1.02);
+    transition: 0.3s ease-in-out;
+  }
+  
+  button {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease;
+    transform-style: we;
+  }
+  
+  button:hover {
+    background:  linear-gradient(to bottom, #e3f2fd, #ffffff);
+  }
+
+  /* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: linear-gradient(to bottom, #e3f2fd, #ffffff);
+    color: #007bff;
+  }
+  
+  .navbar {
+    padding: 1rem;
+    background-color:  linear-gradient(to bottom, #e3f2fd, #ffffff);
+  }
+  
+  .banner {
+    background: url('https://via.placeholder.com/1920x800') center/cover no-repeat;
+    height: 500px;
+    position: relative;
+  }
+  
+  .banner .overlay {
+    height: 100%;
+    background:  linear-gradient(to bottom, #e3f2fd, #ffffff);
+    padding: 0 20px;
+  }
+  
+  .carousel-caption h5 {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  .carousel-caption p {
+    font-size: 1.2rem;
+  }
+  
+  .card {
+    background-color: linear-gradient(to bottom, #e3f2fd, #ffffff);
+    border: none;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card img {
+    border-radius: 10px;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 15px rgba(255, 255, 255, 0.3);
+  }
+  
+  .card-title {
+    font-size: 1.1rem;
+    color: #007BFF;
+    font-weight: bold;
+  }
+  
+  .btn {
+    border-radius: 20px;
+  }
+  
+  .h2 {
+    text-align: left;
+    font-weight: bold;
+    color: #007BFF;
+    margin-bottom: 20px;
+  }
+  
+
+
+  
+  
