@@ -181,20 +181,10 @@ const swiper = new Swiper('.swiper-container', {
     clickable: true,
   },
 });
-
-const switcher = document.getElementById('theme-switcher');
-switcher.addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');
-  if (document.body.classList.contains('dark-mode')) {
-    switcher.textContent = 'Switch to Light Mode';
-  } else {
-    switcher.textContent = 'Switch to Dark Mode';
-  }
-});
-
-function darktheme(){
-  document.getElementsByTagName("body").style.background-color="black"
-  document.getElementsByTagName("p").style.color="white"
+function darktheme() {
+     document.querySelector("body").style.backgroundColor = "black";
+     document.querySelector("p").style.color = "white";
+     
 }
 
 let watchlist = [];
