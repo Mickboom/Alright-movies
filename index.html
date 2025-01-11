@@ -42,8 +42,43 @@
           </li>
         </ul>
         <form class="d-flex">
-          <input  class="form-control me-2"  type="search" href="https://api.netflix.com/" placeholder="Search Movies" id="search-input">
-          <button class="btn btn-outline-light" type="submit">Search</button>
+          <input type="text" id="search" placeholder="Tafuta Filamu..." oninput="searchMovies()">
+    <div id="suggestions"></div>
+
+    <script>
+        const apiKey = 'API_KEY_YAKO'; //69398c8228ad0ef2282393e5c5e98323
+        const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=`;
+
+        async function searchMovies() {
+            const query = document.getElementById('search').value.trim();
+            const suggestionsDiv = document.getElementById('suggestions');
+            suggestionsDiv.innerHTML = ''; // Safisha mapendekezo ya zamani
+
+            if (query.length < 3) {
+                // Usifanye chochote kama maandishi ni mafupi sana
+                return;
+            }
+
+            try {
+                const response = await fetch(`${searchUrl}${query}`);
+                const data = await response.json();
+
+                if (data.results && data.results.length > 0) {
+                    data.results.slice(0, 5).forEach(movie => { // Onyesha mapendekezo 5
+                        const suggestion = document.createElement('div');
+                        suggestion.innerHTML = `
+                            <p><strong>${movie.title}</strong> (${movie.release_date ? movie.release_date.split('-')[0] : 'N/A'})</p>
+                        `;
+                        suggestionsDiv.appendChild(suggestion);
+                    });
+                } else {
+                    suggestionsDiv.innerHTML = '<p>Hakuna matokeo.</p>';
+                }
+            } catch (error) {
+                console.error('Error fetching search results:', error);
+            }
+        }
+    </script>
         </form>
       </div>
     </div>
@@ -167,31 +202,31 @@
     </div>
   </div>
   <script src="app.js">
-    const apiKey = 'API_KEY_YAKO'; //69398c8228ad0ef2282393e5c5e98323
-    const apiUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
+        const apiKey = 'API_KEY_YAKO'; //69398c8228ad0ef2282393e5c5e98323
+        const apiUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
 
-    async function fetchMovies() {
-        try {
-            const response = await fetch(apiUrl);
-            const data = await response.json();
-            const moviesDiv = document.getElementById('movies');
+        async function fetchMovies() {
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                const moviesDiv = document.getElementById('movies');
 
-            data.results.forEach(movie => {
-                const movieElement = document.createElement('div');
-                movieElement.innerHTML = `
-                    <h2>${movie.title}</h2>
-                    <p>${movie.overview}</p>
-                    <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
-                `;
-                moviesDiv.appendChild(movieElement);
-            });
-        } catch (error) {
-            console.error('Error fetching movies:', error);
+                data.results.forEach(movie => {
+                    const movieElement = document.createElement('div');
+                    movieElement.innerHTML = `
+                        <h2>${movie.title}</h2>
+                        <p>${movie.overview}</p>
+                        <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
+                    `;
+                    moviesDiv.appendChild(movieElement);
+                });
+            } catch (error) {
+                console.error('Error fetching movies:', error);
+            }
         }
-    }
 
-    fetchMovies();
-</script>
+        fetchMovies();
+    </script>
 
   
   
