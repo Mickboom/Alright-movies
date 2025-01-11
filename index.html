@@ -61,18 +61,6 @@
   <div class="trending-section py-5">
     <div class="container">
       <h2 class="text-danger mb-4">Trending Movies</h2>
-      <div class="swiper-container">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <img src="kraven.jfif" alt="Trending Movie 1" class="img-fluid rounded">
-            <p class="mt-2 text-center">Trending Movie 1</p>
-          </div>
-          <div class="swiper-slide">
-            <img src="bitch.jfif" alt="Trending Movie 2" class="img-fluid rounded">
-            <p class="mt-2 text-center">Trending Movie 2</p>
-          </div>
-          <!-- Add more slides -->
-        </div>
         <!-- Swiper Pagination -->
         <div class="swiper-pagination"></div>
       </div>
@@ -198,72 +186,42 @@
     </ul>
     <script>
       const apiKey = '69398c8228ad0ef2282393e5c5e98323'; // Weka API Key halali
-      const apiUrl = 'https://api.themoviedb.org/3/search/movie?api_key=';
+      const trendingUrl = `https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`;
   
-      async function searchMovies() {
-          const query = document.getElementById('search').value.trim();
-          const suggestionsDiv = document.getElementById('suggestions');
-          suggestionsDiv.innerHTML = ''; // Safisha mapendekezo
-  
-          if (query.length < 3) return;
+      async function getTrendingMovies() {
+          const trendingDiv = document.getElementById('trending-movies');
+          trendingDiv.innerHTML = ''; // Safisha matokeo ya zamani
   
           try {
-              const response = await fetch(`${apiUrl}${apiKey}&query=${query}`);
+              // Fanya ombi kwa TMDb API kupata trending movies
+              const response = await fetch(trendingUrl);
               const data = await response.json();
   
               if (data.results && data.results.length > 0) {
-                  for (const movie of data.results.slice(0, 5)) {
-                      const suggestion = document.createElement('div');
-                      const trailerEmbed = await getTrailer(movie.id);
-  
-                      suggestion.innerHTML = `
-                          <div class="movie-card">
-                              <h3>${movie.title}</h3>
-                              <p>${movie.overview || "Hakuna maelezo."}</p>
-                              <p><strong>Release Date:</strong> ${movie.release_date || "N/A"}</p>
-                              ${trailerEmbed ? trailerEmbed : "Hakuna Trailer"}
-                              <br>
-                              <a href="https://www.themoviedb.org/movie/${movie.id}" target="_blank">Tazama Maelezo</a>
-                          </div>
+                  data.results.forEach(movie => {
+                      const movieDiv = document.createElement('div');
+                      movieDiv.classList.add('movie-card');
+                      movieDiv.innerHTML = `
+                          <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" class="movie-poster">
+                          <h3>${movie.title}</h3>
+                          <p>${movie.overview || "Hakuna maelezo."}</p>
+                          <p><strong>Release Date:</strong> ${movie.release_date || "N/A"}</p>
+                          <a href="https://www.themoviedb.org/movie/${movie.id}" target="_blank">Tazama Maelezo</a>
                       `;
-                      suggestionsDiv.appendChild(suggestion);
-                  }
+                      trendingDiv.appendChild(movieDiv);
+                  });
               } else {
-                  suggestionsDiv.innerHTML = '<p>Hakuna matokeo.</p>';
+                  trendingDiv.innerHTML = '<p>Hakuna matokeo ya trending kwa sasa.</p>';
               }
           } catch (error) {
               console.error('Hitilafu:', error);
-              suggestionsDiv.innerHTML = '<p>Hitilafu katika utafutaji. Tafadhali jaribu tena.</p>';
+              trendingDiv.innerHTML = '<p>Hitilafu katika utafutaji. Tafadhali jaribu tena.</p>';
           }
       }
   
-      async function getTrailer(movieId) {
-          const trailerUrl = `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}`;
-          try {
-              const response = await fetch(trailerUrl);
-              const data = await response.json();
-              const trailer = data.results.find(video => video.type === 'Trailer' && video.site === 'YouTube');
-  
-              if (trailer) {
-                  const trailerEmbed = `
-                      <div class="trailer-container">
-                          <iframe class="trailer-video" 
-                              src="https://www.youtube.com/embed/${trailer.key}" 
-                              frameborder="0" 
-                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                              allowfullscreen>
-                          </iframe>
-                      </div>`;
-                  return trailerEmbed;
-              }
-              return null;
-          } catch (error) {
-              console.error('Error fetching trailer:', error);
-              return null;
-          }
-      }
+      // Kuita function ili kupata trending movies
+      getTrendingMovies();
   </script>
-  
   
   
   
