@@ -63,6 +63,18 @@ async function displayMovies(movies) {
 // Anza kupakia filamu
 fetchTrendingMovies();
 
+async function fetchTrendingMovies() {
+  try {
+    const response = await fetch(trendingMoviesUrl);
+    const data = await response.json();
+    console.log(data); // Hii itakusaidia kuona data iliyopatikana
+    displayMovies(data.results);
+  } catch (error) {
+    console.error('Error fetching movies:', error);
+  }
+}
+
+
 
 
 
