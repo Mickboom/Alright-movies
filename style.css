@@ -353,6 +353,11 @@ body{font-family:'Poppins',sans-serif;}
   .featured img { height: auto; width: 100%; }
 }
 
+.swiper-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
 
   
 
