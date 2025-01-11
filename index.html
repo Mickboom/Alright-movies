@@ -43,42 +43,7 @@
         </ul>
         <form class="d-flex">
           <input type="text" id="search" placeholder="Tafuta Filamu..." oninput="searchMovies()">
-    <div id="suggestions"></div>
-
-    <script>
-        const apiKey = 'API_KEY_YAKO'; //69398c8228ad0ef2282393e5c5e98323
-        const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=`;
-
-        async function searchMovies() {
-            const query = document.getElementById('search').value.trim();
-            const suggestionsDiv = document.getElementById('suggestions');
-            suggestionsDiv.innerHTML = ''; // Safisha mapendekezo ya zamani
-
-            if (query.length < 3) {
-                // Usifanye chochote kama maandishi ni mafupi sana
-                return;
-            }
-
-            try {
-                const response = await fetch(`${searchUrl}${query}`);
-                const data = await response.json();
-
-                if (data.results && data.results.length > 0) {
-                    data.results.slice(0, 5).forEach(movie => { // Onyesha mapendekezo 5
-                        const suggestion = document.createElement('div');
-                        suggestion.innerHTML = `
-                            <p><strong>${movie.title}</strong> (${movie.release_date ? movie.release_date.split('-')[0] : 'N/A'})</p>
-                        `;
-                        suggestionsDiv.appendChild(suggestion);
-                    });
-                } else {
-                    suggestionsDiv.innerHTML = '<p>Hakuna matokeo.</p>';
-                }
-            } catch (error) {
-                console.error('Error fetching search results:', error);
-            }
-        }
-    </script>
+          <div id="suggestions"></div>
         </form>
       </div>
     </div>
