@@ -76,6 +76,9 @@ async function fetchTrendingMovies() {
 
 
 
+
+
+
 async function searchMovies() {
   const query = document.getElementById('search').value.trim();
   const suggestionsDiv = document.getElementById('suggestions');
