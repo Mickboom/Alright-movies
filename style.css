@@ -356,7 +356,7 @@ body{font-family:'Poppins',sans-serif;}
 .swiper-wrapper {
   display: flex;
   flex-wrap: nowrap;
-  justify-content: space-around;
+ margin: 0 30px 0 0;
 }
 
 
