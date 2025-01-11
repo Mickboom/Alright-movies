@@ -45,59 +45,50 @@
           </li>
         </ul>
         <form class="d-flex">
-          <input type="text" id="search" placeholder="Tafuta Filamu..." oninput="searchMovies()">
-    <div id="suggestions"></div>
-
-    <script>
-      const apiKey = '69398c8228ad0ef2282393e5c5e98323'; // Badilisha na API Key yako
-      const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=`;
-
-      async function searchMovies() {
-          const query = document.getElementById('search').value.trim();
-          const suggestionsDiv = document.getElementById('suggestions');
-          suggestionsDiv.innerHTML = ''; // Safisha mapendekezo ya zamani
-
-          if (query.length < 3) {
-              // Usifanye chochote kama maandishi ni mafupi sana
-              return;
-          }
-
-          try {
-              const response = await fetch(`${searchUrl}${query}`);
-              const data = await response.json();
-
-              if (data.results && data.results.length > 0) {
-                  data.results.slice(0, 5).forEach(movie => { // Onyesha mapendekezo 5
-                      const suggestion = document.createElement('div');
-                      suggestion.innerHTML = `
-                          <p><strong>${movie.title}</strong> (${movie.release_date ? movie.release_date.split('-')[0] : 'N/A'})</p>
-                      `;
-                      suggestionsDiv.appendChild(suggestion);
-                  });
-              } else {
-                  suggestionsDiv.innerHTML = '<p>Hakuna matokeo.</p>';
-              }
-          } catch (error) {
-              console.error('Error fetching search results:', error);
-          }
-      }
-  </script>
+          
         </form>
       </div>
     </div>
   </nav>
 
   <!-- Banner -->
-  <div class="banner">
-    <div class="overlay d-flex align-items-center">
-      <div class="container text-white">
-        <h1 class="display">ALRIGHT MOVIES</h1>
-        <p class="lead">Discover the latest and trending movies to watch and download.</p>
-        <button class="btn btn-danger btn-lg">Start Watching</button>
-      </div>
-    </div>
-  </div>
+  <input type="text" id="search" placeholder="Tafuta Filamu..." oninput="searchMovies()">
+  <div id="suggestions"></div>
 
+  <script>
+    const apiKey = '69398c8228ad0ef2282393e5c5e98323'; // Badilisha na API Key yako
+    const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=`;
+
+    async function searchMovies() {
+        const query = document.getElementById('search').value.trim();
+        const suggestionsDiv = document.getElementById('suggestions');
+        suggestionsDiv.innerHTML = ''; // Safisha mapendekezo ya zamani
+
+        if (query.length < 3) {
+            // Usifanye chochote kama maandishi ni mafupi sana
+            return;
+        }
+
+        try {
+            const response = await fetch(`${searchUrl}${query}`);
+            const data = await response.json();
+
+            if (data.results && data.results.length > 0) {
+                data.results.slice(0, 5).forEach(movie => { // Onyesha mapendekezo 5
+                    const suggestion = document.createElement('div');
+                    suggestion.innerHTML = `
+                        <p><strong>${movie.title}</strong> (${movie.release_date ? movie.release_date.split('-')[0] : 'N/A'})</p>
+                    `;
+                    suggestionsDiv.appendChild(suggestion);
+                });
+            } else {
+                suggestionsDiv.innerHTML = '<p>Hakuna matokeo.</p>';
+            }
+        } catch (error) {
+            console.error('Error fetching search results:', error);
+        }
+    }
+</script>
 
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
