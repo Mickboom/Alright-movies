@@ -1,12 +1,12 @@
-const apiKey = '69398c8228ad0ef2282393e5c5e98323'; // Ingiza API Key yako hapa
-const apiUrl = `https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`;
+const apiKey = '69398c8228ad0ef2282393e5c5e98323'
+const trendingMoviesUrl = `https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`;
 
 const moviesContainer = document.getElementById('movies');
 
 // Pata filamu zinazovuma
 async function fetchTrendingMovies() {
   try {
-    const response = await fetch(apiUrl);
+    const response = await fetch(trendingMoviesUrl);
     const data = await response.json();
     displayMovies(data.results);
   } catch (error) {
@@ -14,25 +14,57 @@ async function fetchTrendingMovies() {
   }
 }
 
-// Onyesha filamu
-function displayMovies(movies) {
+// Pata video za sinema kwa ID ya sinema
+async function fetchMovieVideo(movieId) {
+  try {
+    const videoUrl = `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}`;
+    const response = await fetch(videoUrl);
+    const data = await response.json();
+    const trailer = data.results.find(video => video.type === 'Trailer' && video.site === 'YouTube');
+    return trailer ? `https://www.youtube.com/embed/${trailer.key}` : null;
+  } catch (error) {
+    console.error(`Error fetching video for movie ID ${movieId}:`, error);
+    return null;
+  }
+}
+
+// Onyesha filamu na video
+async function displayMovies(movies) {
   moviesContainer.innerHTML = '';
-  movies.forEach(movie => {
+  for (const movie of movies) {
+    const videoUrl = await fetchMovieVideo(movie.id);
+
     const movieElement = document.createElement('div');
     movieElement.classList.add('movie');
 
-    movieElement.innerHTML = `
-      <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
-      <h3>${movie.title}</h3>
-      <p>Rating: ${movie.vote_average}</p>
-    `;
+    movieElement.innerHTML = videoUrl
+      ? `
+        <iframe 
+          width="100%" 
+          height="200" 
+          src="${videoUrl}" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+        <h3>${movie.title}</h3>
+        <p>Rating: ${movie.vote_average}</p>
+      `
+      : `
+        <h3>${movie.title}</h3>
+        <p>Rating: ${movie.vote_average}</p>
+        <p>No trailer available</p>
+      `;
 
     moviesContainer.appendChild(movieElement);
-  });
+  }
 }
 
 // Anza kupakia filamu
 fetchTrendingMovies();
+
+
+
 
 
 async function searchMovies() {

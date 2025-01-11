@@ -356,7 +356,7 @@ body{font-family:'Poppins',sans-serif;}
 .swiper-wrapper {
   display: flex;
   flex-wrap: nowrap;
- margin:;
+
 }
 
 
@@ -464,6 +464,11 @@ body{font-family:'Poppins',sans-serif;}
 
 .trailer-container:hover::before {
   opacity: 0; /* Hide play button when the video is hovered */
+}
+
+.movie iframe {
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
 
 
