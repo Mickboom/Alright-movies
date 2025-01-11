@@ -1,3 +1,18 @@
+const apiKey = 
+'https://api.netflix.com/';
+const baseUrl =
+'https://api.themoviedb.org/3';
+
+async function fetchMovies() {
+  const response =await
+  fetch('${baseUrl}/movies/popular?api_key=${apiKey}');
+  const data = await
+  response.json();
+  console.log(data.results);
+}
+fetchMovies();
+
+
 document.getElementById("login-form").addEventListener("submit", async (e) => {
     e.preventDefault();
     const username = document.getElementById("username").value;
