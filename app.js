@@ -85,3 +85,40 @@ async function searchMovies() {
     }
 }
 
+const apiKey = 'API_KEY_YAKO'; // Badilisha na API yako halali
+const moviesUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
+
+async function fetchMovies() {
+    const moviesContainer = document.getElementById('movies-container');
+    moviesContainer.innerHTML = '';
+
+    try {
+        const response = await fetch(moviesUrl);
+        if (!response.ok) throw new Error('Failed to fetch movies.');
+
+        const data = await response.json();
+
+        if (data.results && data.results.length > 0) {
+            data.results.forEach(movie => {
+                const movieCard = document.createElement('div');
+                movieCard.classList.add('movie-card');
+
+                movieCard.innerHTML = `
+                    <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" />
+                    <h3>${movie.title}</h3>
+                    <p>${movie.overview || 'No description available.'}</p>
+                    <p><strong>Release Date:</strong> ${movie.release_date || 'N/A'}</p>
+                    <a href="/download/${movie.id}" class="download-link" target="_blank">Download</a>
+                `;
+                moviesContainer.appendChild(movieCard);
+            });
+        } else {
+            moviesContainer.innerHTML = '<p>No movies available.</p>';
+        }
+    } catch (error) {
+        console.error('Error fetching movies:', error.message);
+        moviesContainer.innerHTML = '<p>Error loading movies. Please try again later.</p>';
+    }
+}
+
+fetchMovies();
