@@ -52,8 +52,16 @@
   </nav>
 
   <!-- Banner -->
-  <input type="text" id="search" placeholder="Search Movies..." oninput="searchMovies()">
-  <div id="suggestions"></div>
+  <div class="search-container">
+    <form id="searchForm">
+      <input type="text" id="searchInput" placeholder="Search for movies..." />
+      <button type="submit">
+        <i class="fa fa-search"></i>
+      </button>
+    </form>
+  </div>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script src="app.js"></script>
 
   
 
