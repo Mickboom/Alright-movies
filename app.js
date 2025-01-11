@@ -1,3 +1,38 @@
+const apiKey = '69398c8228ad0ef2282393e5c5e98323'; // Ingiza API Key yako hapa
+const apiUrl = `https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`;
+
+const moviesContainer = document.getElementById('movies');
+
+// Pata filamu zinazovuma
+async function fetchTrendingMovies() {
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+    displayMovies(data.results);
+  } catch (error) {
+    console.error('Error fetching movies:', error);
+  }
+}
+
+// Onyesha filamu
+function displayMovies(movies) {
+  moviesContainer.innerHTML = '';
+  movies.forEach(movie => {
+    const movieElement = document.createElement('div');
+    movieElement.classList.add('movie');
+
+    movieElement.innerHTML = `
+      <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
+      <h3>${movie.title}</h3>
+      <p>Rating: ${movie.vote_average}</p>
+    `;
+
+    moviesContainer.appendChild(movieElement);
+  });
+}
+
+// Anza kupakia filamu
+fetchTrendingMovies();
 
 
 async function searchMovies() {
