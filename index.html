@@ -55,82 +55,7 @@
   <input type="text" id="search" placeholder="Tafuta Filamu..." oninput="searchMovies()">
   <div id="suggestions"></div>
 
-  <script>
-    const apiKey = '69398c8228ad0ef2282393e5c5e98323'; // Weka API Key halali
-    const apiUrl = 'https://api.themoviedb.org/3/search/movie?api_key=';
-
-    // Function ya kutafuta filamu
-    async function searchMovies() {
-        const query = document.getElementById('search').value.trim();
-        const suggestionsDiv = document.getElementById('suggestions');
-        suggestionsDiv.innerHTML = ''; // Safisha mapendekezo
-
-        if (query.length < 3) return; // Usitafute kama neno ni fupi
-
-        try {
-            // Fanya ombi kwa TMDb API
-            const response = await fetch(`${apiUrl}${apiKey}&query=${query}`);
-            const data = await response.json();
-
-            // Angalia kama kuna matokeo
-            if (data.results && data.results.length > 0) {
-                for (const movie of data.results.slice(0, 5)) {
-                    const suggestion = document.createElement('div');
-                    const trailerLink = await getTrailer(movie.id); // Pata trailer
-
-                    suggestion.innerHTML = `
-                        <h3>${movie.title}</h3>
-                        <p>${movie.overview || "Hakuna maelezo."}</p>
-                        <p><strong>Release Date:</strong> ${movie.release_date || "N/A"}</p>
-                        ${trailerLink ? `<a href="${trailerLink}" target="_blank">Tazama Trailer</a>` : "Hakuna Trailer"}
-                        <br>
-                        <a href="https://www.themoviedb.org/movie/${movie.id}" target="_blank">Tazama Maelezo</a>
-                    `;
-                    suggestionsDiv.appendChild(suggestion);
-                }
-            } else {
-                suggestionsDiv.innerHTML = '<p>Hakuna matokeo.</p>';
-            }
-        } catch (error) {
-            console.error('Hitilafu:', error);
-            suggestionsDiv.innerHTML = '<p>Hitilafu katika utafutaji. Tafadhali jaribu tena.</p>';
-        }
-    }
-
-    // Function ya kupata Trailer
-    async function getTrailer(movieId) {
-        const trailerUrl = `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}`;
-        try {
-            const response = await fetch(trailerUrl);
-            const data = await response.json();
-            const trailer = data.results.find(video => video.type === 'Trailer' && video.site === 'YouTube');
-            return trailer ? `https://www.youtube.com/watch?v=${trailer.key}` : null;
-        } catch (error) {
-            console.error('Error fetching trailer:', error);
-            return null;
-        }
-    }
-</script>
-
-
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="app.js"></script><br>
-</body>
-</html>
-  <!-- Banner -->
-  <div class="banner">
-    <div class="overlay d-flex align-items-center">
-      <div class="container text-white">
-        <p class="lead">Discover the latest and trending movies to watch and download.</p>
-        <div class="movie-card" data-aos="fade-up">
-          <img src="https://via.placeholder.com/300x400" alt="Movie Poster">
-          <h5 class="mt-2">Inception</h5>
-        </div>
-        
-      </div>
-    </div>
-  </div>
+  
 
   <!-- Featured Movies -->
   <div class="trending-section py-5">
@@ -220,7 +145,7 @@
 
   
   
-</body>
+
 <footer class="bg-black text-white py-5">
   <div class="container">
     <div class="row">
@@ -268,7 +193,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pakua Sinema</title>
 </head>
-<body>
+
     <h1>Orodha ya Sinema</h1>
     <ul>
         <li>
@@ -280,6 +205,67 @@
             <a href="download.php?file=sinema2.mp4">Pakua Sinema 2</a>
         </li>
     </ul>
+    <script>
+      const apiKey = '69398c8228ad0ef2282393e5c5e98323'; // Weka API Key halali
+      const apiUrl = 'https://api.themoviedb.org/3/search/movie?api_key=';
+  
+      // Function ya kutafuta filamu
+      async function searchMovies() {
+          const query = document.getElementById('search').value.trim();
+          const suggestionsDiv = document.getElementById('suggestions');
+          suggestionsDiv.innerHTML = ''; // Safisha mapendekezo
+  
+          if (query.length < 3) return; // Usitafute kama neno ni fupi
+  
+          try {
+              // Fanya ombi kwa TMDb API
+              const response = await fetch(`${apiUrl}${apiKey}&query=${query}`);
+              const data = await response.json();
+  
+              // Angalia kama kuna matokeo
+              if (data.results && data.results.length > 0) {
+                  for (const movie of data.results.slice(0, 5)) {
+                      const suggestion = document.createElement('div');
+                      const trailerLink = await getTrailer(movie.id); // Pata trailer
+  
+                      suggestion.innerHTML = `
+                          <h3>${movie.title}</h3>
+                          <p>${movie.overview || "Hakuna maelezo."}</p>
+                          <p><strong>Release Date:</strong> ${movie.release_date || "N/A"}</p>
+                          ${trailerLink ? `<a href="${trailerLink}" target="_blank">Tazama Trailer</a>` : "Hakuna Trailer"}
+                          <br>
+                          <a href="https://www.themoviedb.org/movie/${movie.id}" target="_blank">Tazama Maelezo</a>
+                      `;
+                      suggestionsDiv.appendChild(suggestion);
+                  }
+              } else {
+                  suggestionsDiv.innerHTML = '<p>Hakuna matokeo.</p>';
+              }
+          } catch (error) {
+              console.error('Hitilafu:', error);
+              suggestionsDiv.innerHTML = '<p>Hitilafu katika utafutaji. Tafadhali jaribu tena.</p>';
+          }
+      }
+  
+      // Function ya kupata Trailer
+      async function getTrailer(movieId) {
+          const trailerUrl = `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}`;
+          try {
+              const response = await fetch(trailerUrl);
+              const data = await response.json();
+              const trailer = data.results.find(video => video.type === 'Trailer' && video.site === 'YouTube');
+              return trailer ? `https://www.youtube.com/watch?v=${trailer.key}` : null;
+          } catch (error) {
+              console.error('Error fetching trailer:', error);
+              return null;
+          }
+      }
+  </script>
+  
+  
+  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script><br>
 </body>
 </html>
 
