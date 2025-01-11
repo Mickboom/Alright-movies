@@ -75,6 +75,50 @@ async function fetchTrendingMovies() {
 }
 
 
+const apiKey = 'API_KEY_YAKO'; // Badilisha na API yako halali
+const trendingUrl = `https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`;
+
+// Function ya kupata Trending Movies
+async function fetchTrendingMovies() {
+    const trendingList = document.getElementById('trending-list');
+    trendingList.innerHTML = ''; // Safisha matokeo ya zamani
+
+    try {
+        // Ombi la kuleta Trending Movies
+        const response = await fetch(trendingUrl);
+
+        if (!response.ok) {
+            throw new Error('Hitilafu katika ombi la API');
+        }
+
+        const data = await response.json();
+
+        // Onyesha Trending Movies
+        if (data.results && data.results.length > 0) {
+            data.results.forEach(movie => {
+                const movieCard = document.createElement('div');
+                movieCard.classList.add('movie-card');
+
+                movieCard.innerHTML = `
+                    <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" />
+                    <h3>${movie.title}</h3>
+                    <p>Popularity: ${movie.popularity.toFixed(1)}</p>
+                    <p>Release Date: ${movie.release_date || 'N/A'}</p>
+                    <a href="https://www.themoviedb.org/movie/${movie.id}" target="_blank">More Info</a>
+                `;
+                trendingList.appendChild(movieCard);
+            });
+        } else {
+            trendingList.innerHTML = '<p>No trending movies available at the moment.</p>';
+        }
+    } catch (error) {
+        console.error('Hitilafu:', error.message);
+        trendingList.innerHTML = `<p>${error.message}</p>`;
+    }
+}
+
+// Piga function mara moja
+fetchTrendingMovies();
 
 
 
