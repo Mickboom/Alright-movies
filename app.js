@@ -194,7 +194,8 @@ async function fetchMovieDetails() {
 fetchTrailer();
 
 
-const apiKey = '69398c8228ad0ef2282393e5c5e98323'; // Badilisha na API yako halali
+const apiKey = // Tumia apiKey iliyopo
+
 const trendingMoviesUrl = `https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`;
 
 async function fetchTrendingMovies() {
@@ -245,8 +246,8 @@ async function fetchTrendingMovies() {
 fetchTrendingMovies();
 
 
-const tmdbApiKey = '69398c8228ad0ef2282393e5c5e98323';
 
+const apiKey = // Tumia apiKey iliyopo
 const trendingMoviesUrl = `https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`;
 
 async function fetchTrendingMovies() {
