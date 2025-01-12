@@ -9,15 +9,43 @@
 <body>
     <header>
         <h1>Alright Movies</h1>
-          <nav>
-              <ul class="menu">
-                  <li><a href="#" id="trending-link">Trending Movies</a></li>
-                  <li><a href="#" id="watchlist-link">Watchlist</a></li>
-                  <li><a href="#" id="kdramas-link">K-Dramas</a></li>
-                  <li><a href="#" id="chinese-link">Chinese Movies</a></li>
-              </ul>
-          </nav>
+          <div class="navbar">
+              <h1 class="logo">Alright Movies</h1>
+              <nav>
+                  <ul class="menu">
+                      <li><a href="#" id="trending-link">Trending</a></li>
+                      <li><a href="#" id="watchlist-link">Watchlist</a></li>
+                      <li><a href="#" id="kdramas-link">K-Dramas</a></li>
+                      <li><a href="#" id="chinese-link">Chinese</a></li>
+                  </ul>
+              </nav>
+          </div>
       </header>
+      
+      <main>
+          <!-- Hero Section -->
+          <section class="hero">
+              <h2>Welcome to Right Movies</h2>
+              <p>Watch your favorite movies anytime, anywhere!</p>
+              <button class="cta-btn">Explore Now</button>
+          </section>
+      
+          <!-- Movie Sections -->
+          <section id="trending-movies">
+              <h2>Trending Now</h2>
+              <div id="results-container" class="movie-grid"></div>
+          </section>
+      
+          <section id="trailers">
+              <h2>Latest Trailers</h2>
+              <div id="trailers-container" class="movie-grid"></div>
+          </section>
+      
+          <section id="watch-now">
+              <h2>Watch Now</h2>
+              <div id="watch-now-container" class="movie-grid"></div>
+          </section>
+      </main>
       
         <div class="search-bar">
             <input type="text" id="search-input" placeholder="Search for movies...">
