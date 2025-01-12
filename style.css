@@ -274,4 +274,6 @@ h2 {
 }
 
 
-
+.navbar{
+  display: flex;
+}
