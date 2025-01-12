@@ -144,3 +144,52 @@ async function fetchTrendingMovies() {
 
 // Piga function mara moja
 fetchTrendingMovies();
+
+
+
+const apiKey = '69398c8228ad0ef2282393e5c5e98323'; // Badilisha na API yako halali
+const movieId = 550; // Mfano wa ID ya filamu, unaweza kuchukua ID halisi kutoka API
+const trailerUrl = `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}&language=en-US`;
+const movieDetailsUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en-US`;
+
+// Function ya kuleta Trailer na kuionyesha
+async function fetchTrailer() {
+    const trailerContainer = document.getElementById('trailer-container');
+    trailerContainer.innerHTML = ''; // Safisha maudhui ya zamani
+
+    try {
+        const response = await fetch(trailerUrl);
+        if (!response.ok) throw new Error('Failed to fetch trailer.');
+
+        const data = await response.json();
+        const trailer = data.results.find(video => video.type === 'Trailer' && video.site === 'YouTube');
+
+        if (trailer) {
+            const videoUrl = `https://www.youtube.com/embed/${trailer.key}`;
+            const movieDetails = await fetchMovieDetails(); // Pata maelezo zaidi
+
+            trailerContainer.innerHTML = `
+                <iframe width="100%" height="315" src="${videoUrl}" frameborder="0" allowfullscreen></iframe>
+                <button class="details-btn" onclick="window.open('${movieDetails.homepage || '#'}', '_blank')">
+                    Maelezo Zaidi
+                </button>
+            `;
+        } else {
+            trailerContainer.innerHTML = '<p>Hakuna trailer inayopatikana kwa sasa.</p>';
+        }
+    } catch (error) {
+        console.error('Error fetching trailer:', error.message);
+        trailerContainer.innerHTML = `<p>${error.message}</p>`;
+    }
+}
+
+// Function ya kuleta maelezo zaidi ya filamu
+async function fetchMovieDetails() {
+    const response = await fetch(movieDetailsUrl);
+    if (!response.ok) throw new Error('Failed to fetch movie details.');
+    return await response.json();
+}
+
+// Piga function mara moja
+fetchTrailer();
+
