@@ -193,3 +193,55 @@ async function fetchMovieDetails() {
 // Piga function mara moja
 fetchTrailer();
 
+
+const apiKey = '69398c8228ad0ef2282393e5c5e98323'; // Badilisha na API yako halali
+const trendingMoviesUrl = `https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`;
+
+async function fetchTrendingMovies() {
+    const watchNowContainer = document.getElementById('watch-now-container');
+    watchNowContainer.innerHTML = ''; // Safisha matokeo ya zamani
+
+    try {
+        const response = await fetch(trendingMoviesUrl);
+        if (!response.ok) throw new Error('Failed to fetch trending movies.');
+
+        const data = await response.json();
+
+        if (data.results && data.results.length > 0) {
+            for (const movie of data.results) {
+                // Pata trailer ya kila filamu
+                const trailerUrl = `https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=${apiKey}&language=en-US`;
+                const trailerResponse = await fetch(trailerUrl);
+                const trailerData = await trailerResponse.json();
+
+                const trailer = trailerData.results.find(video => video.type === 'Trailer' && video.site === 'YouTube');
+
+                const movieCard = document.createElement('div');
+                movieCard.classList.add('watch-card');
+
+                movieCard.innerHTML = `
+                    <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" />
+                    <h3>${movie.title}</h3>
+                    ${
+                        trailer
+                            ? `<iframe src="https://www.youtube.com/embed/${trailer.key}" allowfullscreen></iframe>`
+                            : '<p>No trailer available.</p>'
+                    }
+                    <a href="https://www.themoviedb.org/movie/${movie.id}" class="details-btn" target="_blank">Maelezo Zaidi</a>
+                `;
+
+                watchNowContainer.appendChild(movieCard);
+            }
+        } else {
+            watchNowContainer.innerHTML = '<p>No trending movies available.</p>';
+        }
+    } catch (error) {
+        console.error('Error fetching trending movies:', error.message);
+        watchNowContainer.innerHTML = `<p>${error.message}</p>`;
+    }
+}
+
+// Piga function mara moja
+fetchTrendingMovies();
+
+
