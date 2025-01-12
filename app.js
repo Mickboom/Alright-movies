@@ -100,7 +100,7 @@ async function searchMovies() {
 }
 
 
-const apiKey = '69398c8228ad0ef2282393e5c5e98323'; // Badilisha na API yako halali
+const apiKey = '69398c8228ad0ef2282393e5c5e98323'; // Tumia apiKey iliyopo
 const trendingUrl = `https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`;
 
 // Function ya kupata Trending Movies
@@ -147,7 +147,7 @@ fetchTrendingMovies();
 
 
 
-const apiKey = '69398c8228ad0ef2282393e5c5e98323'; // Badilisha na API yako halali
+const apiKey = // Tumia apiKey iliyopo
 const movieId = 550; // Mfano wa ID ya filamu, unaweza kuchukua ID halisi kutoka API
 const trailerUrl = `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}&language=en-US`;
 const movieDetailsUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en-US`;
