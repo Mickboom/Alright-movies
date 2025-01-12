@@ -1,19 +1,4 @@
-const data = null;
 
-const xhr = new XMLHttpRequest();
-xhr.withCredentials = true;
-
-xhr.addEventListener('readystatechange', function () {
-	if (this.readyState === this.DONE) {
-		console.log(this.responseText);
-	}
-});
-
-xhr.open('GET', 'https://movie-tv-music-search-and-download.p.rapidapi.com/search?keywords=Civil%20War%202024&quantity=40&page=1');
-xhr.setRequestHeader('x-rapidapi-key', '7e2eccbd4cmshc14c7a206fd7a58p1d4449jsn7c7ee2402346');
-xhr.setRequestHeader('x-rapidapi-host', 'movie-tv-music-search-and-download.p.rapidapi.com');
-
-xhr.send(data);
 const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
 const apiUrl = `${proxyUrl}https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=`;
 
