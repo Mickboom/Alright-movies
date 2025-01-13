@@ -5,78 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alright Movies</title>
     <link rel="stylesheet" href="style.css">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6291587953834794"
-    crossorigin="anonymous"></script>
-    <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
-    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
 </head>
 <body>
+    <!-- Header -->
     <header>
-
-          <div class="navbar">
-              <h1 class="logo">Alright Movies</h1>
-              </div>
-        <div class="search-bar">
-            <input type="text" id="search-input" placeholder="Search for movies...">
-            <button id="search-button">Search</button>
+        <div class="logo">
+            <h1>Alright Movies</h1>
         </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Trending Movies</a></li>
+                <li><a href="#">Watchlist</a></li>
+                <li><a href="#">Kdramas</a></li>
+                <li><a href="#">Chinese Movies</a></li>
+            </ul>
+        </nav>
     </header>
-    <main>
-      <!-- Movie Sections -->
-      <section id="trending-movies">
-          <h2>Trending Now</h2>
-          <div id="results-container" class="movie-grid"></div>
-      </section>
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6291587953834794"
-      crossorigin="anonymous"></script>
- <!-- alright movies -->
- <ins class="adsbygoogle"
-      style="display:block"
-      data-ad-client="ca-pub-6291587953834794"
-      data-ad-slot="6499535175"
-      data-ad-format="auto"
-      data-full-width-responsive="true"></ins>
- <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
- </script>
-  </main>
-  
-    <main>
-        <!-- Search Results Section -->
-        <section id="search-results">
-            <h2>Search Results</h2>
-            <div id="results-container"></div>
-        </section>
 
-        <!-- Trailers Section -->
-        <section id="trailers">
-            <h2>Movie Trailers</h2>
-            <div id="trailers-container">
-                           <!-- Modal for Trailer -->
-<div id="trailer-modal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <iframe id="trailer-video" width="100%" height="400" frameborder="0" allowfullscreen></iframe>
-    </div>
-</div>
-        </section>
-    </main>
-    <div id="trending-movies">
+    <!-- Search Bar -->
+    <section class="search-section">
+        <input type="text" id="movie-search" placeholder="Search for movies...">
+        <button id="search-btn">Search</button>
+    </section>
+
+    <!-- Trending Movies Section -->
+    <section class="trending-movies">
         <h2>Trending Movies</h2>
-        <div id="trending-container">
-          <!-- Trending Movies will load here dynamically -->
-        </div>
-      </div>
-      
-    <script src="app.js"></script>
-            </div>
-        </section>
+        <div id="trending-movies-list"></div>
+    </section>
 
-        <!-- Watch Now Section -->
-        <section id="watch-now">
-            <h2>Watch Now</h2>
-            <div id="watch-now-container"></div>
- 
+    <!-- Movie Trailer Section -->
+    <section class="movie-trailer">
+        <h2>Watch Movie Trailer</h2>
+        <div id="trailer-container">
+            <!-- Trailer video will appear here -->
+        </div>
+    </section>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Google AdSense Ad -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-6291587953834794"
+     data-ad-slot="6499535175"
+     data-ad-format="auto"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Alright Movies. All rights reserved.</p>
+    </footer>
+
+    <script src="app.js"></script>
 </body>
 </html>
 

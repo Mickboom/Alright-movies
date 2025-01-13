@@ -1,90 +1,69 @@
-const apiKey = '69398c8228ad0ef2282393e5c5e98323';
-const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=`;
-const trendingUrl = `https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`;
+const apiKey = 'YOUR_TMDB_API_KEY';
+const movieSearchInput = document.getElementById('movie-search');
+const searchButton = document.getElementById('search-btn');
+const trendingMoviesContainer = document.getElementById('trending-movies-list');
+const trailerContainer = document.getElementById('trailer-container');
 
-async function fetchMovies(url) {
-    const response = await fetch(url);
-    const data = await response.json();
-    return data.results || [];
-}
-
-function displayMovies(movies, containerId) {
-    const container = document.getElementById(containerId);
-    container.innerHTML = '';
-    movies.forEach(movie => {
-        const movieCard = document.createElement('div');
-        movieCard.classList.add('movie-card');
-        movieCard.innerHTML = `
-            <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" />
-            <h3>${movie.title}</h3>
-            ${
-                movie.video
-                    ? `<iframe src="https://www.youtube.com/embed/${movie.video}" allowfullscreen></iframe>`
-                    : '<p>No trailer available.</p>'
-            }
-            <a href="https://www.themoviedb.org/movie/${movie.id}" class="details-btn" target="_blank">More Details</a>
-        `;
-        container.appendChild(movieCard);
-    });
-}
-
-// Search Movies
-document.getElementById('search-button').addEventListener('click', async () => {
-    const query = document.getElementById('search-input').value.trim();
+// Search Button Functionality
+searchButton.addEventListener('click', async () => {
+    const query = movieSearchInput.value;
     if (query) {
-        const movies = await fetchMovies(`${searchUrl}${query}`);
-        displayMovies(movies, 'results-container');
+        const results = await fetchMovies(query);
+        displayMovies(results);
     }
 });
 
-// Display Trending Movies
-(async function displayTrendingMovies() {
-    const movies = await fetchMovies(trendingUrl);
-    displayMovies(movies, 'watch-now-container');
-})();
-
-
-const apiKey = '69398c8228ad0ef2282393e5c5e98323'; // API yako
-const baseUrl = 'https://api.themoviedb.org/3';
-
-async function fetchTrendingMovies() {
-  try {
-    const response = await fetch(`${baseUrl}/trending/movie/day?api_key=${apiKey}`);
+// Fetch Movies
+async function fetchMovies(query) {
+    const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`);
     const data = await response.json();
-    return data.results.slice(0, 10); // Chukua movies 10 za kwanza
-  } catch (error) {
-    console.error('Error fetching trending movies:', error);
-  }
+    return data.results;
 }
 
-async function fetchTrailer(movieId) {
-  try {
-    const response = await fetch(`${baseUrl}/movie/${movieId}/videos?api_key=${apiKey}`);
-    const data = await response.json();
-    const trailer = data.results.find(video => video.type === 'Trailer' && video.site === 'YouTube');
-    return trailer ? trailer.key : null;
-  } catch (error) {
-    console.error('Error fetching trailer:', error);
-  }
+// Display Movies
+function displayMovies(movies) {
+    trendingMoviesContainer.innerHTML = '';
+    movies.forEach(movie => {
+        const movieElement = document.createElement('div');
+        const movieImage = document.createElement('img');
+        movieImage.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+        movieElement.appendChild(movieImage);
+
+        const movieTitle = document.createElement('h3');
+        movieTitle.textContent = movie.title;
+        movieElement.appendChild(movieTitle);
+
+        const movieTrailerButton = document.createElement('button');
+        movieTrailerButton.textContent = 'Watch Trailer';
+        movieTrailerButton.addEventListener('click', () => fetchMovieTrailer(movie.id));
+        movieElement.appendChild(movieTrailerButton);
+
+        trendingMoviesContainer.appendChild(movieElement);
+    });
 }
 
-async function displayTrendingMovies() {
-  const trendingContainer = document.getElementById('trending-container');
-  const movies = await fetchTrendingMovies();
+// Fetch Movie Trailer
+async function fetchMovieTrailer(movieId) {
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}`);
+    const data = await response.json();
+    const trailer = data.results.find(video => video.site === 'YouTube' && video.type === 'Trailer');
+    if (trailer) {
+        displayTrailer(trailer.key);
+    }
+}
 
-  for (const movie of movies) {
-    const trailerKey = await fetchTrailer(movie.id);
-    const movieDiv = document.createElement('div');
-    movieDiv.classList.add('movie');
-
-    movieDiv.innerHTML = `
-      <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" />
-      <h3>${movie.title}</h3>
-      ${trailerKey ? `<iframe src="https://www.youtube.com/embed/${trailerKey}" frameborder="0" allowfullscreen></iframe>` : ''}
+// Display Trailer
+function displayTrailer(trailerKey) {
+    trailerContainer.innerHTML = `
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/${trailerKey}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     `;
-
-    trendingContainer.appendChild(movieDiv);
-  }
 }
 
-displayTrendingMovies();
+// Fetch Trending Movies on Page Load
+async function fetchTrendingMovies() {
+    const response = await fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`);
+    const data = await response.json();
+    displayMovies(data.results);
+}
+
+fetchTrendingMovies();
