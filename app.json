@@ -1,0 +1,25 @@
+{
+    "id": "12345",
+    "results": [
+      {
+        "id": "abc123",
+        "iso_639_1": "en",
+        "iso_3166_1": "US",
+        "key": "dQw4w9WgXcQ",
+        "name": "Official Trailer",
+        "site": "YouTube",
+        "type": "Trailer"
+      }
+    ]
+  }
+{
+    "results": [
+      {
+        "id": 12345,
+        "title": "Movie Title",
+        "poster_path": "/path_to_poster.jpg"
+      },
+      ...
+    ]
+  }
+    
