@@ -42,7 +42,13 @@ document.getElementById('search-button').addEventListener('click', async () => {
     const movies = await fetchMovies(trendingUrl);
     displayMovies(movies, 'watch-now-container');
 })();
-try {
+
+
+const apiKey = '69398c8228ad0ef2282393e5c5e98323'; // API yako
+const baseUrl = 'https://api.themoviedb.org/3';
+
+async function fetchTrendingMovies() {
+  try {
     const response = await fetch(`${baseUrl}/trending/movie/day?api_key=${apiKey}`);
     const data = await response.json();
     return data.results.slice(0, 10); // Chukua movies 10 za kwanza

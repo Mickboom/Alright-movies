@@ -22,4 +22,14 @@
       ...
     ]
   }
-    
+  {
+    "results": [
+      {
+        "id": 12345,
+        "title": "Movie Title",
+        "poster_path": "/path_to_poster.jpg"
+      },
+      ...
+    ]
+  }
+  
