@@ -47,6 +47,14 @@
             margin-bottom: 15px;
         }
 
+        .user-section {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #e8f5e9;
+            border-radius: 8px;
+        }
+
         footer {
             text-align: center;
             padding: 10px 20px;
@@ -66,6 +74,27 @@
         .btn:hover {
             background-color: #45a049;
         }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        input {
+            padding: 10px;
+            width: 80%;
+            max-width: 400px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .points {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #4CAF50;
+        }
     </style>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6291587953834794"
         crossorigin="anonymous"></script>
@@ -77,6 +106,16 @@
     </header>
 
     <div class="container">
+        <section class="user-section">
+            <h2>Your Account</h2>
+            <p>Points Earned: <span class="points">0</span></p>
+            <form id="signup-login">
+                <input type="text" id="username" placeholder="Enter your username" required>
+                <input type="password" id="password" placeholder="Enter your password" required>
+                <button type="button" class="btn" onclick="loginSignup()">Sign Up / Login</button>
+            </form>
+        </section>
+
         <section class="ad-section">
             <h2>Watch Ads Below</h2>
             <!-- First Ad Slot -->
@@ -125,8 +164,31 @@
     <footer>
         <p>&copy; 2025 Watch and Earn. All Rights Reserved.</p>
     </footer>
+
+    <script>
+        let points = 0;
+
+        function loginSignup() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            if (username && password) {
+                alert(`Welcome, ${username}! Your account is active.`);
+            } else {
+                alert('Please fill in both fields.');
+            }
+        }
+
+        function updatePoints() {
+            points += 10; // Example: Add 10 points per ad watched
+            document.querySelector('.points').textContent = points;
+        }
+
+        // Simulate earning points when ads are watched
+        setInterval(updatePoints, 30000); // Add points every 30 seconds (for demonstration)
+    </script>
 </body>
 </html>
+
 
 
 
