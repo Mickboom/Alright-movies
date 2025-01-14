@@ -122,6 +122,28 @@
             background-color: #333;
             color: white;
         }
+
+        .wallet-section {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .wallet-section button {
+            margin: 5px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .wallet-section .points, .wallet-section .balance {
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -137,6 +159,7 @@
         <form id="account-form" onsubmit="handleAccountAction(event)">
             <input type="text" id="modal-username" placeholder="Username" required>
             <input type="password" id="modal-password" placeholder="Password" required>
+            <input type="tel" id="modal-phone" placeholder="Phone Number (optional)">
             <button type="submit">Submit</button>
             <p>
                 <span id="modal-switch-text">Don't have an account?</span>
@@ -172,6 +195,13 @@
 
             <p>Earn points by watching multiple ads!</p>
         </section>
+
+        <section class="wallet-section">
+            <div class="points">Points: <span id="user-points">0</span></div>
+            <div class="balance">Balance: $<span id="user-balance">0.00</span></div>
+            <button onclick="handleDeposit()">Deposit Money</button>
+            <button onclick="handleWithdraw()">Withdraw Money</button>
+        </section>
     </div>
 
     <footer>
@@ -180,9 +210,10 @@
 
     <script>
         let users = [
-            { username: "testuser", password: "1234" }
+            { username: "testuser", password: "1234", phone: "", points: 0, balance: 0.0 }
         ];
 
+        let currentUser = null;
         let isLoginMode = true;
 
         function openAccountModal(mode) {
@@ -209,10 +240,13 @@
 
             const username = document.getElementById('modal-username').value;
             const password = document.getElementById('modal-password').value;
+            const phone = document.getElementById('modal-phone').value;
 
             if (isLoginMode) {
                 const user = users.find(u => u.username === username);
                 if (user && user.password === password) {
+                    currentUser = user;
+                    updateUserDetails();
                     alert(`Welcome back, ${username}!`);
                     closeAccountModal();
                 } else {
@@ -222,15 +256,53 @@
                 if (users.some(u => u.username === username)) {
                     alert('Username already taken. Please choose another.');
                 } else {
-                    users.push({ username, password });
+                    users.push({ username, password, phone, points: 0, balance: 0.0 });
                     alert('Account created successfully. You can now log in.');
                     switchModal();
                 }
             }
         }
+
+        function updateUserDetails() {
+            if (currentUser) {
+                document.getElementById('user-points').textContent = currentUser.points;
+                document.getElementById('user-balance').textContent = currentUser.balance.toFixed(2);
+            }
+        }
+
+        function handleDeposit() {
+            if (!currentUser) {
+                alert('You must log in to perform this action.');
+                return;
+            }
+            const amount = prompt('Enter the amount to deposit:');
+            if (amount && !isNaN(amount) && amount > 0) {
+                currentUser.balance += parseFloat(amount);
+                updateUserDetails();
+                alert('Deposit successful!');
+            } else {
+                alert('Invalid amount.');
+            }
+        }
+
+        function handleWithdraw() {
+            if (!currentUser) {
+                alert('You must log in to perform this action.');
+                return;
+            }
+            const amount = prompt('Enter the amount to withdraw:');
+            if (amount && !isNaN(amount) && amount > 0 && amount <= currentUser.balance) {
+                currentUser.balance -= parseFloat(amount);
+                updateUserDetails();
+                alert('Withdrawal successful!');
+            } else {
+                alert('Invalid or insufficient funds.');
+            }
+        }
     </script>
 </body>
 </html>
+
 
 
 
