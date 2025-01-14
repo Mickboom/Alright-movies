@@ -190,12 +190,14 @@
             <h2>Watch Ads Below</h2>
             <div class="ad-grid">
                 <div class="ad-item">
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6291587953834794"
+                        crossorigin="anonymous"></script>
                     <ins class="adsbygoogle"
-                        style="display:block"
+                        style="display:block; text-align:center;"
+                        data-ad-layout="in-article"
+                        data-ad-format="fluid"
                         data-ad-client="ca-pub-6291587953834794"
-                        data-ad-slot="1234567890"
-                        data-ad-format="auto"
-                        data-full-width-responsive="true"></ins>
+                        data-ad-slot="6399764148"></ins>
                     <script>
                         (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>
@@ -262,76 +264,8 @@
             isLoginMode = !isLoginMode;
             document.getElementById('modal-title').textContent = isLoginMode ? 'Login' : 'Sign Up';
             document.getElementById('modal-switch-text').textContent = isLoginMode ? "Don't have an account?" : 'Already have an account?';
-            document.querySelector('.switch-btn').textContent = isLoginMode ? 'Sign Up' : 'Login';
-        }
+            document.querySelector
 
-        function handleAccountAction(event) {
-            event.preventDefault();
-
-            const username = document.getElementById('modal-username').value;
-            const password = document.getElementById('modal-password').value;
-            const phone = document.getElementById('modal-phone').value;
-
-            if (isLoginMode) {
-                const user = users.find(u => u.username === username);
-                if (user && user.password === password) {
-                    currentUser = user;
-                    updateUserDetails();
-                    alert(`Welcome back, ${username}!`);
-                    closeAccountModal();
-                } else {
-                    alert('Incorrect username or password.');
-                }
-            } else {
-                if (users.some(u => u.username === username)) {
-                    alert('Username already taken. Please choose another.');
-                } else {
-                    users.push({ username, password, phone, points: 0, balance: 0.0 });
-                    alert('Account created successfully. You can now log in.');
-                    switchModal();
-                }
-            }
-        }
-
-        function updateUserDetails() {
-            if (currentUser) {
-                document.getElementById('user-points').textContent = currentUser.points;
-                document.getElementById('user-balance').textContent = currentUser.balance.toFixed(2);
-            }
-        }
-
-        function handleDeposit() {
-            if (!currentUser) {
-                alert('You must log in to perform this action.');
-                return;
-            }
-            const amount = prompt('Enter the amount to deposit:');
-            if (amount && !isNaN(amount) && amount > 0) {
-                currentUser.balance += parseFloat(amount);
-                updateUserDetails();
-                alert('Deposit successful!');
-            } else {
-                alert('Invalid amount.');
-            }
-        }
-
-        function handleWithdraw() {
-            if (!currentUser) {
-                alert('You must log in to perform this action.');
-                return;
-            }
-            const amount = prompt('Enter the amount to withdraw:');
-            if (amount && !isNaN(amount) && amount > 0 && amount <= currentUser.balance) {
-                currentUser.balance -= parseFloat(amount);
-                updateUserDetails();
-                alert('Withdrawal successful!');
-            } else {
-                alert('Invalid or insufficient funds.');
-            }
-        }
-    </script>
-</body>
-</html>
 
 
 
